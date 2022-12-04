@@ -51,7 +51,7 @@ ws.on("message", (raw) => {
       }
     }
   })
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < longestPriceLength; i++) {
     for (let j = 0; j < symbols.length; j++) {
       const s = symbols[j]
       if (book[s].s) {
