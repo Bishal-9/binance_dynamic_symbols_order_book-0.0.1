@@ -1,0 +1,21 @@
+{
+  "name": "socket-0.0.1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Bishal Goon",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.1.2",
+    "ws": "^8.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
