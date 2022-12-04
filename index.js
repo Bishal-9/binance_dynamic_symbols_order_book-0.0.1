@@ -4,9 +4,10 @@ import WebSocket from "ws"
 import chalk from "chalk"
 
 const book = {}
-const heading = "\t\t\t\t\t\t\t  B I N A N C E   O R D E R   B O O K   \n"
+let heading = "\t  B I N A N C E   O R D E R   B O O K   "
 let symbolHeader = "\t\t\t"
-let typeHeader = chalk.green("     Buy\t Quantity\t") + chalk.red("     Sell\t Quantity\t\t")
+let transactionHeader = chalk.green("     Buy\t Quantity\t") + chalk.red("     Sell\t Quantity\t\t")
+let typeHeader = ""
 let v = ""
 
 const p = path.resolve("symbols.txt")
@@ -14,13 +15,15 @@ const symbols = fs.readFileSync(p, "utf8").split("\n")
 
 let socketUrl = "wss://stream.binance.com:443/stream?streams="
 symbols.forEach((s, i) => {
-  socketUrl = socketUrl + `${s.toLowerCase()}@depth/`
+  socketUrl = socketUrl + `${s.toLowerCase()}@depth@100ms/`
   book[s] = {}
   symbolHeader = symbolHeader + s.toUpperCase() + "\t\t\t\t\t\t\t\t\t"
+  typeHeader = typeHeader + transactionHeader
   if (i > 0) {
-    typeHeader = typeHeader + typeHeader
+    heading = "\t\t\t\t\t" + heading
   }
 })
+heading = heading + "\n"
 socketUrl = socketUrl.substring(0, socketUrl.length - 1)
 
 const ws = new WebSocket(socketUrl)
